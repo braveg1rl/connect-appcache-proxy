@@ -1,0 +1,31 @@
+{
+  "name": "connect-appcache-proxy",
+  "description": "A proxy for files listed in an appcache manifest.",
+  "keywords": [],
+  "version": "0.0.0",
+  "author": "Meryn Stol <merynstol@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/meryn/connect-appcache-proxy",
+  "bugs": "https://github.com/meryn/connect-appcache-proxy/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/meryn/connect-appcache-proxy.git"
+  },
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "~1.6.2",
+    "mocha": "~1.9.0"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "main": "lib/connect-appcache-proxy.js",
+  "scripts": {
+    "prepublish": "npm test",
+    "pretest": "make build",
+    "test": "make test"
+  }
+}
