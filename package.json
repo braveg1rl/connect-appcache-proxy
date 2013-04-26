@@ -12,7 +12,12 @@
     "url": "git://github.com/meryn/connect-appcache-proxy.git"
   },
   "private": false,
-  "dependencies": {},
+  "dependencies": {
+    "connect-entity-cache": "0.0.2",
+    "async": "~0.2.7",
+    "underscore": "~1.4.4",
+    "request": "~2.20.0"
+  },
   "devDependencies": {
     "coffee-script": "~1.6.2",
     "mocha": "~1.9.0"
