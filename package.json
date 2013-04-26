@@ -16,7 +16,8 @@
     "connect-entity-cache": "0.0.2",
     "async": "~0.2.7",
     "underscore": "~1.4.4",
-    "request": "~2.20.0"
+    "request": "~2.20.0",
+    "parse-appcache-manifest": "0.0.1"
   },
   "devDependencies": {
     "coffee-script": "~1.6.2",
