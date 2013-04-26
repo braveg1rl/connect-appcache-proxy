@@ -1,8 +1,22 @@
 # connect-appcache-proxy [![Build Status](https://travis-ci.org/meryn/connect-appcache-proxy.png?branch=master)](https://travis-ci.org/meryn/connect-appcache-proxy) [![Dependency Status](https://david-dm.org/meryn/connect-appcache-proxy.png)](https://david-dm.org/meryn/connect-appcache-proxy)
 
-A proxy for files listed in an appcache manifest.
+A proxy for files listed in an HTML5 appcache manifest.
+
+## Why?
+
+When a website is served over SSL, loading resources from a different domain into the appcache is not allowed, even if these resources are served over SSL. 
+
+If you want to be able to deploy static assets quickly via Amazon S3 or similar, while still being able to use HTML5 Appcache and SSL at the same time, this module might come in handy.
 
 ## Usage
+
+```javascript
+var connect = require("connect")
+var AppcacheProxy = require("connect-appcache-proxy")
+
+var app = connect()
+app.use(new AppcacheProxy("http://somewebserver.com/appcache.manifest"))
+```
 
 ## Credits
 
