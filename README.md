@@ -15,8 +15,39 @@ var connect = require("connect")
 var AppcacheProxy = require("connect-appcache-proxy")
 
 var app = connect()
-app.use(new AppcacheProxy("http://somewebserver.com/appcache.manifest"))
+app.use(new AppcacheProxy("http://youraccount.staticfilehost.com/appcache.manifest"))
 ```
+
+### Refreshing the cache
+
+You can call `proxy.refresh(cb)` to refetch the manifest and repopulate the cache from its source at any time. The new cache will be activated as soon as its entirely ready, ensuring the set of resources served are of the same release.
+
+```
+var app = connect()
+var proxy = new AppcacheProxy("https://secure.staticfileserver.com/youraccount/appcache.manifest")
+app.use(proxy))
+proxy.refresh (function(err) {
+  if (err) {
+    console.error("Appcache proxy failed to initialize.")
+    console.error(err)
+    // perhaps use some retry strategy
+  }
+  else console.log("Appcache proxy is ready.")
+})
+
+```
+
+## Options
+
+You may pass the AppCacheProxy constructor an options object as second argument. Possible options are:
+
+* `log` - a log function. Defaults to a noop. Can be handy to see what's going on.
+* `overrideEntries` - an object with key-value pairs with key the cache entry you want to override, and value the url you want to override it with. This is handy when you want to put `/`, `./` or similar entries into your manifest but your static file host does not allow specifying a resource for such an url.
+* `callback` - if autostart is `true`, this is called when the cache has finished initializing. Only at this moment is your server ready to serve requests for the files in the manifest. Defaults to throwing an error, if any.
+* `autostart` - will automatically populate the cache when the constructor is called. Defaults to `true`.
+* `allowHeaders` - the headers that are copied verbatim from the response received from the static file host. Defaults to `["cache-control", "content-type", "content-encoding", "content-length", "last-modified"]`
+* `busyMessage` - when `showBusy` is `true`, then you may specify the `text/plain` content that is served. Defaults to `"The server is restarting. Try again in a minute."`
+* `showBusy` - when the cache is being populated, there's a brief time in which your server is not able to serve requests. This only happens once on server startup. If set to true, then a `503: Server is busy` response will be served. If set to false, then any request is simply passed on to the next middleware. This in turn would most likely return in a 404 in the end, unless you serversome kind of fallback resources elsewhere.
 
 ## Credits
 
