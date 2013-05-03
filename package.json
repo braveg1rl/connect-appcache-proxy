@@ -1,8 +1,21 @@
 {
   "name": "connect-appcache-proxy",
   "description": "A proxy for files listed in an appcache manifest.",
-  "keywords": ["appcache","application cache","cache manifest","html5","reverse-proxy","connect","http", "caching", "static files", "ssl", "tls", "s3"],
-  "version": "0.0.2",
+  "keywords": [
+    "appcache",
+    "application cache",
+    "cache manifest",
+    "html5",
+    "reverse-proxy",
+    "connect",
+    "http",
+    "caching",
+    "static files",
+    "ssl",
+    "tls",
+    "s3"
+  ],
+  "version": "0.0.3",
   "author": "Meryn Stol <merynstol@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/meryn/connect-appcache-proxy",
