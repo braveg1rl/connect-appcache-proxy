@@ -15,7 +15,7 @@
     "tls",
     "s3"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Meryn Stol <merynstol@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/meryn/connect-appcache-proxy",
