@@ -32,7 +32,7 @@ module.exports = class AppcacheProxy
       return cb err if err
       @log "Downloaded manifest #{@manifestURL}"
       @log "Activating new HTML5 application cache."
-      @log process.memoryUsage()
+      memBefore = process.memoryUsage()
       entries = parseManifest(manifest).cache
       urls = entries.map (url) => if @overrideEntries[url] then @overrideEntries[url] else url
       remoteURLs = urls.map (url) => resolveURL @manifestURL, url
@@ -48,9 +48,16 @@ module.exports = class AppcacheProxy
         @newCache = new EntityCache
         @ready = true
         @log "Activated new HTML5 application cache."
-        @log process.memoryUsage()
-        
+        memAfter = process.memoryUsage()
+        @showMemDiff memBefore, memAfter
         cb null # successfully refreshed the cache
+  
+  showMemDiff: (before, after) ->
+    diff = {}
+    for entry in ["rss","heapTotal","heapUsed"]
+      diff[entry] = Math.floor((after[entry] - before[entry]) / 1024) 
+    @log "#{name} increase: #{value}KB" for name, value of diff
+
   getManifest: (cb) ->
     @log "Downloading manifest #{@manifestURL}"
     fetchEntity @manifestURL, (err, response) =>
