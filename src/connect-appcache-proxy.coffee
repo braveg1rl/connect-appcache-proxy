@@ -11,7 +11,7 @@ applyDefaults = require("underscore").defaults
 defaults =
   log: (msg) ->
   overrideEntries: {}
-  callback: (err) -> throw err
+  callback: (err) -> throw err if err
   autostart: true
   busyMessage: "The server is restarting. Try again in a minute."
   showBusy: true
@@ -50,6 +50,7 @@ module.exports = class AppcacheProxy
         @log "Activated new HTML5 application cache."
         @log process.memoryUsage()
         
+        cb null # successfully refreshed the cache
   getManifest: (cb) ->
     @log "Downloading manifest #{@manifestURL}"
     fetchEntity @manifestURL, (err, response) =>
