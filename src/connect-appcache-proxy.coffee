@@ -22,10 +22,13 @@ module.exports = class AppcacheProxy
     applyDefaults @options, defaults
     @log = @options.log
     @overrideEntries = @options.overrideEntries
-    @currentCache = new EntityCache log: @log
-    @newCache = new EntityCache log: @log
+    @currentCache = @makeEntityCache()
+    @newCache = @makeEntityCache()
     @ready = false
     @refreshCache options.callback if options.autostart
+    
+  makeEntityCache: ->
+    new EntityCache log: @log
   
   refreshCache: (cb) ->
     @getManifest (err, manifest) =>
@@ -45,7 +48,7 @@ module.exports = class AppcacheProxy
         resourcePairs = zipArrays resourcePaths, responses
         resourcePairs.map (pair) => @newCache.cacheEntity pair[0], pair[1].body, pair[1].headers
         @currentCache = @newCache
-        @newCache = new EntityCache
+        @newCache = @makeEntityCache()
         @ready = true
         @log "Activated new HTML5 application cache."
         memAfter = process.memoryUsage()
