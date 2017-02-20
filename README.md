@@ -1,5 +1,7 @@
 # connect-appcache-proxy [![Build Status](https://travis-ci.org/meryn/connect-appcache-proxy.png?branch=master)](https://travis-ci.org/meryn/connect-appcache-proxy) [![Dependency Status](https://david-dm.org/meryn/connect-appcache-proxy.png)](https://david-dm.org/meryn/connect-appcache-proxy)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/braveg1rl/connect-appcache-proxy.svg)](https://greenkeeper.io/)
+
 A proxy for files listed in an HTML5 appcache manifest.
 
 ## Why?
